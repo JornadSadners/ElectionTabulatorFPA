@@ -11,7 +11,7 @@ namespace DataBaseObjects
 {
     public class ElectionDBClass
     {
-        {	
+    	
     private static string ConString = ""; // Connection String Code Should be Inserted into this Variable
 
         private static SqlConnection con;
@@ -51,8 +51,19 @@ namespace DataBaseObjects
                 if (con.State == System.Data.ConnectionState.Open)
                     con.Close();
             }
+        }
 
-
+        public static DataTable ResultsTable() // should create the DataTable within the code based on the selected Table
+        {
+            DataTable dtResults = new DataTable();
+            string sql = ""; // Insert Command for the Database here, something like "SELECT * From ElectionTable"
+            SqlDataAdapter da;
+            OpenDB();
+            da = new SqlDataAdapter(sql, con);
+            da.FillSchema(dtResults, SchemaType.Source);
+            da.Fill(dtResults);
+            CloseDB();
+            return dtResults;
         }
     }
 }
