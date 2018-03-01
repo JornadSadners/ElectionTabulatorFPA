@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
 
 namespace DataBaseObjects
 {
     public class ElectionDBClass
     {
     	
-    private static string ConString = ""; // Connection String Code Should be Inserted into this Variable
+        private static string ConString = ""; // Connection String Code Should be Inserted into this Variable
 
         private static SqlConnection con;
 
@@ -64,6 +59,11 @@ namespace DataBaseObjects
             da.Fill(dtResults);
             CloseDB();
             return dtResults;
+        }
+
+        public static void VerifyVoter(Voter V) // method to verify voter information
+        {
+            // Need to write code to retrieve data from Database so it can be compared to the voter information
         }
     }
 }
