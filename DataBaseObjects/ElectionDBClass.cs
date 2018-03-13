@@ -61,15 +61,16 @@ namespace DataBaseObjects
             return dtResults;
         }
 
-        public static void VerifyVoter(Voter V) // method to verify voter information
+        public static void VerifyVoter(Voter VUser, Voter VData) // method to verify voter information
         {
-            
+            // VUser is the Voter Object retrieved from the Users input from the program
+            // VData is the Voter Object retrieved from the Database
         }
 
         public static Voter RetrieveVoterObject(int VoterID) // should retrieve a Voter Object based on the input of a VoterID, Voter has an override for .ToString()
         {
             SqlDataReader DR;
-            Voter V = new Voter();
+            Voter VData = new Voter();
             string sql = "SELECT * From Voters where VoterID = " + VoterID.ToString(); // !!! placeholder may need to be changed 
             OpenDB();
 
@@ -77,13 +78,13 @@ namespace DataBaseObjects
             DR = cmd.ExecuteReader();
             if (DR.Read())
             {
-                V.VoterID = (int)DR["VoterID"];
+                VData.VoterID = (int)DR["VoterID"];
                 // fill in with the rest of the datatable voter properties, name, address etc.
 
                 DR.Close();
                 CloseDB();
 
-                return V;
+                return VData;
             }
 
             else
