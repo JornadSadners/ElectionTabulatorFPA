@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Master.Master" />
+    <Content Include="App_Themes\VerificationTheme\VerificationStyleSheet.css" />
     <Content Include="VerifyInformation.aspx" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
@@ -77,7 +78,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Master.Master.cs">
