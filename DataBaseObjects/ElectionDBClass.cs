@@ -61,9 +61,9 @@ namespace DataBaseObjects
             return dtResults;
         }
 
-        public static void VerifyVoter(Voter V) // method to verify voter information
-        {
-            // Need to write code to retrieve data from Database so it can be compared to the voter information
-        }
+        //public static void VerifyVoter(Voter V) // method to verify voter information
+        //{
+        //    // Need to write code to retrieve data from Database so it can be compared to the voter information
+        //}
     }
 }

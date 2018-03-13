@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Results.aspx.cs" Inherits="ElectionTabulatorFPA.WebForm1" %>
+﻿<%@ Page Title="Results Page" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Results.aspx.cs" Inherits="ElectionTabulatorFPA.WebForm1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <script src='<%=ResolveClientUrl("~/Scripts/jquery-3.3.1.min.js") %>'></script>
      <script src='<%=ResolveClientUrl("~/Scripts/jquery.signalR-2.2.2.min.js") %>'></script>  
@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="StyleSheet.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <div id="voterTicker" class="inner">
         <h2>Live Vote Ticker</h2>
         <ul>

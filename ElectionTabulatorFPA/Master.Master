@@ -6,40 +6,37 @@
 <head runat="server">
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
-        <link href="App_Themes/MasterTheme/StyleSheet.css" rel="stylesheet" />
+        
     </asp:ContentPlaceHolder>
+    <link href="masterStyles.css" rel="stylesheet" />
 </head>
 <body>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+</asp:ContentPlaceHolder>
     <form id="form1" runat="server">
-<<<<<<< HEAD
-        <div id="SideBar">
-=======
-        <div class="content">
->>>>>>> master
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+            <div id="sideBar">
 
-<<<<<<< HEAD
-
-                <asp:Menu ID="Menu1" runat="server" BackColor="#F7F6F3" DynamicHorizontalOffset="2" CssClass="menu" Font-Names="Century Gothic" Font-Size="0.8em" ForeColor="#7C6F57" StaticSubMenuIndent="10px" >
-                    <DynamicHoverStyle BackColor="#7C6F57" ForeColor="White" />
-                    <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
-                    <DynamicMenuStyle BackColor="#F7F6F3" />
-                    <DynamicSelectedStyle BackColor="#5D7B9D" />
-                    <Items>
-                        <asp:MenuItem Text="Candidate1" Value="Candidate1"></asp:MenuItem>
-                        <asp:MenuItem Text="Candidate2" Value="Candidate2"></asp:MenuItem>
-                        <asp:MenuItem Text="Candidate3" Value="Candidate3"></asp:MenuItem>
-                    </Items>
-                    <StaticHoverStyle BackColor="#7C6F57" ForeColor="White" />
-                    <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
-                    <StaticSelectedStyle BackColor="#5D7B9D" />
-                </asp:Menu>
-
-
-=======
->>>>>>> e908f9d4b032402e2fc106a4d3203d79aa10aad6
-            </asp:ContentPlaceHolder>
-        </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Candidate Name</th>
+                            <th>Party</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Candidate Candidateson</td>
+                            <td>Party A</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">description...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
     </form>
 </body>
 </html>
