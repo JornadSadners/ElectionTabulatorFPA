@@ -48,7 +48,7 @@ namespace DataBaseObjects
             }
         }
 
-        public static DataTable VotersTable() // should create the DataTable within the code based on the selected Table
+        public static DataTable VotersTable()
         {
             DataTable VotersTable = new DataTable();
             string sql = "SELECT * From Voters";
@@ -61,7 +61,7 @@ namespace DataBaseObjects
             return VotersTable;
         }
 
-        public static DataTable VoterInfoTable()
+        public static DataTable VoterInfoTable() // unsure if neccassary
         {
             DataTable VoterInfoTable = new DataTable();
             string sql = "SELECT * From VoterInfo";
@@ -72,6 +72,19 @@ namespace DataBaseObjects
             da.Fill(VoterInfoTable);
             CloseDB();
             return VoterInfoTable;
+        }
+
+        public static DataTable CandidateTable()
+        {
+            DataTable CandidateTable = new DataTable();
+            string sql = "SELECT * From VoterInfo";
+            SqlDataAdapter da;
+            OpenDB();
+            da = new SqlDataAdapter(sql, con);
+            da.FillSchema(CandidateTable, SchemaType.Source);
+            da.Fill(CandidateTable);
+            CloseDB();
+            return CandidateTable;
         }
 
         public static void VerifyVoter(Voter VUser, Voter VData) // method to verify voter information
