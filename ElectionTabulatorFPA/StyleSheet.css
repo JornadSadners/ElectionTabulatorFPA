@@ -2,67 +2,44 @@
     font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
     font-size: 16px;
 }
-
-.content {
-    width: 96%;
-    margin: 0 auto;
+.fluff {
+    padding: 40px;
 }
 
-#resultsTable {
+.center {
     text-align: center;
-    width: 96%;
 }
 
-    #resultsTable table {
-        margin: 0 auto;
-        border: 3px solid black;
-        border-collapse: collapse;
-    }
-
-        #resultsTable table th {
-            padding: 4px 6px;
-            background-color: #150848;
-            color: white;
-            font-size: 24px;
-        }
-
-        #resultsTable table td {
-            padding: 2px 6px;
-            text-align: right;
-        }
-
-    #resultsTable .loading td {
-        text-align: left;
-    }
-
-#voteTicker {
-    overflow: hidden;
-    width: 450px;
-    height: 24px;
-    border: 1px solid #999;
+header {
+    padding: 40px;
 }
 
-    #voteTicker .inner {
-        width: 9999px;
+.container-master {
+    margin: 0 auto;
+    width: 94%;
+    border: 1px solid #808080;
+    border-radius: 2px;
+    padding: 40px;
+}
+
+#resultsTable table {
+    margin: 0 auto;
+    border: 3px solid black;
+    border-collapse: collapse;
+}
+
+    #resultsTable table th {
+        padding: 4px 6px;
+        background-color: #150848;
+        color: white;
+        font-size: 24px;
     }
 
-    #voteTicker ul {
-        display: inline-block;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
+    #resultsTable table td {
+        padding: 4px 6px;
+        text-align: right;
     }
 
-    #voteTicker li {
-        display: inline-block;
-        margin-right: 8px;
-    }
-
-    /*<li data-symbol="{Symbol}"><span class="symbol">{Symbol}</span><span class="price">{Price}</span><span class="change">{PercentChange}</span></li>*/
-    #voteTicker .symbol {
-        font-weight: bold;
-    }
-
-    #voteTicker .votes {
-        font-style: italic;
-    }
+#resultsTable .loading td {
+    text-align: left;
+}

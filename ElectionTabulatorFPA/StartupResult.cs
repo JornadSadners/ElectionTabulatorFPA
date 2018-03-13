@@ -14,9 +14,9 @@ namespace ElectionTabulatorFPA
         public void Configuration(IAppBuilder app)
         {
             // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=316888
-            string sqlConnectionString = ConfigurationManager.ConnectionStrings["B231InstructorMachine"].ConnectionString;
+            //string sqlConnectionString = ConfigurationManager.ConnectionStrings["B231InstructorMachine"].ConnectionString;
 
-            GlobalHost.DependencyResolver.UseSqlServer(sqlConnectionString);
+            //GlobalHost.DependencyResolver.UseSqlServer(sqlConnectionString);
             app.MapSignalR();
         }
     }
