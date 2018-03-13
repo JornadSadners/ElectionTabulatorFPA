@@ -6,12 +6,26 @@ using System.Threading.Tasks;
 
 namespace DataBaseObjects
 {
-    class Voter
+    public class Voter
     {
-        public static Voter GetVoter(String VoterID)
+        public int VoterID { get; set; }
+
+        public Voter(
+            int VoterID)
         {
-            throw new NotImplementedException();
-            // placeholder, need to code to retrieve information from the voter table based on the VoterID or equivalent
+            this.VoterID = VoterID;
+            // fill in with rest of DataTable Columns
+        }
+
+        public Voter()
+        {
+        }
+
+        public override string ToString() // allows Voter Object to be easily converted to String Properly
+        {
+            return $"Voter ID: {VoterID}"; // Ditto
+
+            // may need to edit this based on our specific needs
         }
     }
 }

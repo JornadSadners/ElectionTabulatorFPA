@@ -63,7 +63,35 @@ namespace DataBaseObjects
 
         public static void VerifyVoter(Voter V) // method to verify voter information
         {
-            // Need to write code to retrieve data from Database so it can be compared to the voter information
+            
+        }
+
+        public static Voter RetrieveVoterObject(int VoterID) // should retrieve a Voter Object based on the input of a VoterID, Voter has an override for .ToString()
+        {
+            SqlDataReader DR;
+            Voter V = new Voter();
+            string sql = "SELECT * From Voters where VoterID = " + VoterID.ToString(); // !!! placeholder may need to be changed 
+            OpenDB();
+
+            SqlCommand cmd = new SqlCommand(sql, con);
+            DR = cmd.ExecuteReader();
+            if (DR.Read())
+            {
+                V.VoterID = (int)DR["VoterID"];
+                // fill in with the rest of the datatable voter properties, name, address etc.
+
+                DR.Close();
+                CloseDB();
+
+                return V;
+            }
+
+            else
+            {
+                CloseDB();
+
+                throw new Exception($"VoterID {VoterID} Not Found");
+            }
         }
     }
 }
