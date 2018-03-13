@@ -94,20 +94,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <Content Include="App_Themes\MasterTheme\StyleSheet.css" />
-    <Content Include="Master.Master" />
-<<<<<<< HEAD
-    <Content Include="WebForm1.aspx" />
-=======
-    <Content Include="LoginForm.aspx" />
-    <Content Include="App_Themes\FPATheme\MainSkin.skin" />
->>>>>>> e908f9d4b032402e2fc106a4d3203d79aa10aad6
-=======
     <Content Include="Global.asax" />
     <Content Include="Master.Master" />
     <Content Include="Results.aspx" />
->>>>>>> master
     <None Include="packages.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -124,13 +113,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-=======
     <Content Include="Scripts\jquery.signalR-2.2.2.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
     <Content Include="StyleSheet.css" />
     <Content Include="VoteTicker.js" />
->>>>>>> master
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -147,24 +133,6 @@
       <DependentUpon>Master.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-=======
-    <Compile Include="LoginForm.aspx.cs">
-      <DependentUpon>LoginForm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LoginForm.aspx.designer.cs">
-      <DependentUpon>LoginForm.aspx</DependentUpon>
->>>>>>> e908f9d4b032402e2fc106a4d3203d79aa10aad6
-    </Compile>
-=======
     <Compile Include="Results.aspx.cs">
       <DependentUpon>Results.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -181,7 +149,6 @@
       <Project>{68e28f12-e4f7-4e1f-b7d8-4290659230f3}</Project>
       <Name>BaseLayerObjects</Name>
     </ProjectReference>
->>>>>>> master
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
