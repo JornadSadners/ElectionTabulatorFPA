@@ -48,17 +48,30 @@ namespace DataBaseObjects
             }
         }
 
-        public static DataTable ResultsTable() // should create the DataTable within the code based on the selected Table
+        public static DataTable VotersTable() // should create the DataTable within the code based on the selected Table
         {
-            DataTable dtResults = new DataTable();
-            string sql = ""; // Insert Command for the Database here, something like "SELECT * From ElectionTable"
+            DataTable VotersTable = new DataTable();
+            string sql = "SELECT * From Voters";
             SqlDataAdapter da;
             OpenDB();
             da = new SqlDataAdapter(sql, con);
-            da.FillSchema(dtResults, SchemaType.Source);
-            da.Fill(dtResults);
+            da.FillSchema(VotersTable, SchemaType.Source);
+            da.Fill(VotersTable);
             CloseDB();
-            return dtResults;
+            return VotersTable;
+        }
+
+        public static DataTable VoterInfoTable()
+        {
+            DataTable VoterInfoTable = new DataTable();
+            string sql = "SELECT * From VoterInfo";
+            SqlDataAdapter da;
+            OpenDB();
+            da = new SqlDataAdapter(sql, con);
+            da.FillSchema(VoterInfoTable, SchemaType.Source);
+            da.Fill(VoterInfoTable);
+            CloseDB();
+            return VoterInfoTable;
         }
 
         public static void VerifyVoter(Voter VUser, Voter VData) // method to verify voter information
@@ -86,7 +99,7 @@ namespace DataBaseObjects
         {
             SqlDataReader DR;
             Voter VData = new Voter();
-            string sql = "SELECT * From Voters where VoterID = " + VoterID.ToString(); // !!! placeholder may need to be changed 
+            string sql = "SELECT * From Voters where VoterID = " + VoterID.ToString();
             OpenDB();
 
             SqlCommand cmd = new SqlCommand(sql, con);
@@ -94,7 +107,9 @@ namespace DataBaseObjects
             if (DR.Read())
             {
                 VData.VoterID = (int)DR["VoterID"];
-                // fill in with the rest of the datatable voter properties, name, address etc.
+                VData.Fname = (string)DR["Fname"];
+                VData.Lname = (string)DR["Lname"];
+                VData.HasVoted = (bool)DR["HasVoted"]; // watch this one, might need to specify a 0 or 1 instead of true or false
 
                 DR.Close();
                 CloseDB();
@@ -107,6 +122,38 @@ namespace DataBaseObjects
                 CloseDB();
 
                 throw new Exception($"VoterID {VoterID} Not Found");
+            }
+        }
+
+        public static Candidate RetrieveCandidateObject(int CandidateID) // should retrieve a Candidate Object based on the input of a CandidateID, Candidate has an override for .ToString()
+        {
+            SqlDataReader DR;
+            Candidate CData = new Candidate();
+            string sql = "SELECT * From Candidates where VoterID = " + CandidateID.ToString();
+            OpenDB();
+
+            SqlCommand cmd = new SqlCommand(sql, con);
+            DR = cmd.ExecuteReader();
+            if (DR.Read())
+            {
+                CData.CandidateID = (int)DR["CandidateID"];
+                CData.Fname = (string)DR["Fname"];
+                CData.Lname = (string)DR["Lname"];
+                CData.PartyName = (string)DR["PartyName"];
+                CData.Seat = (string)DR["Seat"];
+                CData.VoteCount = (int)DR["VoteCount"];
+
+                DR.Close();
+                CloseDB();
+
+                return CData;
+            }
+
+            else
+            {
+                CloseDB();
+
+                throw new Exception($"VoterID {CandidateID} Not Found");
             }
         }
     }
