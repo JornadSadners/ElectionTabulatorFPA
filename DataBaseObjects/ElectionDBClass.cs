@@ -63,8 +63,23 @@ namespace DataBaseObjects
 
         public static void VerifyVoter(Voter VUser, Voter VData) // method to verify voter information
         {
+
             // VUser is the Voter Object retrieved from the Users input from the program
             // VData is the Voter Object retrieved from the Database
+
+            string VUserString = VUser.ToString();
+            string VDataString = VData.ToString();
+
+            if (VUserString == VDataString)
+            {
+                // strings match and the voter is correct
+            }
+
+            else
+            {
+                // strings don't match, verification failed
+            }
+             
         }
 
         public static Voter RetrieveVoterObject(int VoterID) // should retrieve a Voter Object based on the input of a VoterID, Voter has an override for .ToString()
