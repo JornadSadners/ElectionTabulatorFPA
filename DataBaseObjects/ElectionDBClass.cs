@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
+
 namespace DataBaseObjects
 {
     public class ElectionDBClass
@@ -150,8 +151,8 @@ namespace DataBaseObjects
             if (DR.Read())
             {
                 CData.CandidateID = (int)DR["CandidateID"];
-                CData.Fname = (string)DR["Fname"];
-                CData.Lname = (string)DR["Lname"];
+                CData.FName = (string)DR["Fname"];
+                CData.LName = (string)DR["Lname"];
                 CData.PartyName = (string)DR["PartyName"];
                 CData.Seat = (string)DR["Seat"];
                 CData.VoteCount = (int)DR["VoteCount"];

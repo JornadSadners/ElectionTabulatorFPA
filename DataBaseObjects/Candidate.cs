@@ -8,38 +8,26 @@ namespace DataBaseObjects
 {
     public class Candidate
     {
-        public int CandidateID { get; set; }
-        public string Fname { get; set; }
-        public string Lname { get; set; }
-        public string PartyName { get; set; }
-        public string Seat { get; set; }
-        public int VoteCount { get; set; }
-        
-            public Candidate(
-            int CandidateID,
-            string Fname,
-            string Lname,
-            string PartyName,
-            string Seat,
-            int VoteCount)
+            public int CandidateID { get; set; }
+            public string FName { get; set; }
+            public string LName { get; set; }
+            public string PartyName { get; set; }
+            public string Seat { get; set; }
+            public int VoteCount { get; set; }
+            public Candidate()
+            {
 
-        {
-            this.CandidateID = CandidateID;
-            this.Fname = Fname;
-            this.Lname = Lname;
-            this.PartyName = PartyName;
-            this.Seat = Seat;
-        }
-
-        public Candidate()
-        {
-        }
-
-        public override string ToString() // allows Voter Object to be easily converted to String Properly
-        {
-            return $"Candidate ID: {CandidateID} First Name: {Fname} Last Name: {Lname} Party Name: {PartyName} Seat: {Seat} Vote Count: {VoteCount}";
-
-            // may need to edit this based on our specific needs
+            }
+            public Candidate(int candidateID, string fname, string lname, string partyname, string seat)
+            {
+                this.CandidateID = candidateID;
+                this.FName = fname;
+                this.LName = lname;
+                this.PartyName = partyname;
+                this.Seat = seat;
+                this.VoteCount = 0;
+            }
         }
     }
-}
+
+
