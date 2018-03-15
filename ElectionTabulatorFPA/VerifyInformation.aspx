@@ -11,7 +11,7 @@
         <asp:Label ID="Label2" runat="server" Text="Last Name: " Font-Size="X-Large"></asp:Label>
         <br />
         <asp:TextBox ID="txtLastName" runat="server" Font-Size="X-Large"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtLastName" Display="Dynamic" ErrorMessage="You must enter your flast name" Font-Size="X-Large"></asp:RequiredFieldValidator>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtLastName" Display="Dynamic" ErrorMessage="You must enter your last name" Font-Size="X-Large"></asp:RequiredFieldValidator>
         <br />
         <asp:Label ID="Label3" runat="server" Text="DOB (dd-mm-yyyy)" Font-Size="X-Large"></asp:Label>
         <br />
