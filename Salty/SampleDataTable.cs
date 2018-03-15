@@ -9,16 +9,17 @@ namespace Salty
 {
     class SampleDataTable
     {
+        public static  DataTable myTable;
         /// <summary>
         /// Below would be rough example of the saltedHash datatable would look like
         /// SQL table would have three values: id = int, salt= varbinary, hash =varbinary
         /// </summary>
-        void GenerateDataTable()
+        public static void GenerateDataTable()
         {
-            DataTable myTable;
+           
         
             // Create a new DataTable.
-            myTable = new DataTable("My Table");
+            myTable = new DataTable("Table");
 
             DataColumn id = new DataColumn("SaltedHashID"); //or userid
             id.DataType = System.Type.GetType("System.Int32");

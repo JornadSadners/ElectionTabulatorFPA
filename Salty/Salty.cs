@@ -81,6 +81,10 @@ namespace Salty
             {
                 byte[] salty = GetSalt(32); //First, the salt is generated
                 byte[] saltyHash = GenerateSaltedHash(DataReceived, salty);  //Second, DataReceived + salty generate the hash.
+                if (SampleDataTable.myTable == null)
+                    SampleDataTable.GenerateDataTable();
+
+                SampleDataTable.myTable.Rows.Add(salty, saltyHash);
                 //The SQL database needs to store both the hash and the salt as varbinary, so it can be converted to a 
                 //byte[].
                 // DBLayer.InsertHashTable(salty, saltyHash); third, the generated hash would be saved on the data base 
@@ -106,7 +110,7 @@ namespace Salty
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                if (dt.Rows[i].Field<int>("id") == id) //Checks if ID's match, if true; generates saltedhash, then compares generated hash with hash on dt. 
+                if (i == id) //Checks if ID's match, if true; generates saltedhash, then compares generated hash with hash on dt. 
                 {
                     //generates a SaltedHash with the datareceived, this is to allow for a comparison between the hash on the database and the new generated hash. A hash generated with key 'A' should always create Hash 'A'. So if  hash 'A' != hash 'B', then then means one of two things: key 'a' != key 'b', or there is an error in logic some where. 
 

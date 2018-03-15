@@ -1,0 +1,16 @@
+﻿body {
+
+}
+
+h2{
+    text-align: center;
+    background-color: rgb(5,162,195);
+    font-size: 40px;
+}
+
+label { /* Not working? I plan on centering the entire form */
+    padding-left: 100px;
+}
+
+
+
