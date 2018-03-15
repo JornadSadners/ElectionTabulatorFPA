@@ -170,5 +170,34 @@ namespace DataBaseObjects
                 throw new Exception($"VoterID {CandidateID} Not Found");
             }
         }
+
+        public static VoterInfo RetrieveVoterInfoObject(int VoterID) // should retrieve a Candidate Object based on the input of a CandidateID, Candidate has an override for .ToString()
+        {
+            SqlDataReader DR;
+            VoterInfo VIData = new VoterInfo();
+            string sql = "SELECT * From Candidates where VoterID = " + VoterID.ToString();
+            OpenDB();
+
+            SqlCommand cmd = new SqlCommand(sql, con);
+            DR = cmd.ExecuteReader();
+            if (DR.Read())
+            {
+                VIData.VoterID = (int)DR["VoterID"];
+                VIData.Salt = (string)DR["Salt"];
+                VIData.Hash = (string)DR["Hash"];
+
+                DR.Close();
+                CloseDB();
+
+                return VIData;
+            }
+
+            else
+            {
+                CloseDB();
+
+                throw new Exception($"VoterID {VoterID} Not Found");
+            }
+        }
     }
 }

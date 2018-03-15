@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataBaseObjects
 {
+    [Serializable]
     public class Candidate
     {
             public int CandidateID { get; set; }
