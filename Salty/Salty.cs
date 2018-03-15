@@ -8,6 +8,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using DataBaseObjects;
+
 namespace Salty
 {
     /// <summary>
@@ -15,6 +17,36 @@ namespace Salty
     /// </summary>
     public static class Salty
     {
+
+
+        #region commented out functions. If inserting User and user info is added in baseobjects db these functions will be added back in, then tested.
+        /// <summary>
+        /// use this method for saving the generated hashes and the generated salt to the database 
+        /// passwords are not saved, in the HashTableCheck method it
+        /// </summary>
+        /// <param name="DataReceived">Convert any incoming string to byte[] with System.Text.Encoding.UTF8.getByte(yourString)</param>
+        /// <returns></returns>
+        //public static byte[] SaveSaltAndHash(byte[] DataReceived) //Used to add a InsertHashTable in DBLayer
+        //{
+        //    try
+        //    {
+        //        byte[] salty = GetSalt(32); //First, the salt is generated
+        //        byte[] saltyHash = GenerateSaltedHash(DataReceived, salty);  //Second, DataReceived + salty generate the hash.
+
+        //        SampleDataTable.myTable.Rows.Add(salty, saltyHash);
+        //        //The SQL database needs to store both the hash and the salt as varbinary, so it can be converted to a 
+        //        //byte[].
+        //        // DBLayer.InsertHashTable(salty, saltyHash); third, the generated hash would be saved on the data base 
+        //        return saltyHash;
+        //    }
+        //    catch (Exception)
+        //    {
+
+        //        return null;
+        //    }
+        //}
+
+        #endregion 
 
         /// <summary>
         ///  generates salt
@@ -32,15 +64,14 @@ namespace Salty
             return salt;
         }
 
-
         /// <summary>
-        /// 1. creating a hash with the salt value, and user input
+        /// 
         /// 
         /// </summary>
         /// <param name="plainText">Convert any incoming string to byte[] with System.Text.Encoding.UTF8.getByte(yourString)</param>
         /// <param name="salt">Two options: use Salty.getSalt method to get the salt, or get salt from dataTable.</param>
         /// <returns></returns>
-        private static byte[] GenerateSaltedHash(byte[] plainText, byte[] salt)//works, plaintext would be the user input, 
+        private static byte[] GenerateSaltedHash(byte[] plainText, byte[] salt)//works, plaintext would be the user input, salt is salt
         {
             HashAlgorithm algorithm = new SHA256Managed();
             byte[] plainTextWithSaltBytes = new byte[plainText.Length + salt.Length]; //
@@ -69,49 +100,53 @@ namespace Salty
 
             return algorithm.ComputeHash(plainTextWithSaltBytes);
         }
-        /// <summary>
-        /// use this method for saving the generated hashes and the generated salt to the database 
-        /// passwords are not saved, in the HashTableCheck method it
-        /// </summary>
-        /// <param name="DataReceived">Convert any incoming string to byte[] with System.Text.Encoding.UTF8.getByte(yourString)</param>
-        /// <returns></returns>
-        //public static byte[] SaveSaltAndHash(byte[] DataReceived) //Used to add a InsertHashTable in DBLayer
-        //{
-        //    try
-        //    {
-        //        byte[] salty = GetSalt(32); //First, the salt is generated
-        //        byte[] saltyHash = GenerateSaltedHash(DataReceived, salty);  //Second, DataReceived + salty generate the hash.
-             
-        //        SampleDataTable.myTable.Rows.Add(salty, saltyHash);
-        //        //The SQL database needs to store both the hash and the salt as varbinary, so it can be converted to a 
-        //        //byte[].
-        //        // DBLayer.InsertHashTable(salty, saltyHash); third, the generated hash would be saved on the data base 
-        //        return saltyHash;
-        //    }
-        //    catch (Exception)
-        //    {
 
-        //        return null;
-        //    }
-        //}
-  
         /// <summary>
-        /// compares stored hash to Hash generated from user info.
+        ///   /// compares stored hash to Hash generated from user info.
         /// if true, let them through
         /// </summary>
-        /// <param name="DataReceived">Convert any incoming string to byte[] with System.Text.Encoding.UTF8.getByte(yourString)</param>
-        /// <param name="dt">dt is the dataTable columns need to equal: ID</param>
+        /// <param name="FN">First Name</param>
+        /// <param name="LN">Last Name</param>
+        /// <param name="DOB">Date of Birth</param>
+        /// <param name="Cntry">Country</param>
+        /// <param name="rgn">Region</param>
+        /// <param name="adrs">address</param>
+        /// <param name="eml">email</param>
         /// <returns></returns>
-        public static bool CheckHashTable(byte[] DataReceived,  int id)
+        public static bool CheckHashTable(string FN, string LN, DateTime DOB, string Cntry, string rgn, string adrs, string eml)
         {
+            DataTable aaa = ElectionDBClass.VotersTable(); 
+            int id = -1;
+            //Should find a better Method
+            foreach (DataRow dr in aaa.Rows)
+            {
+                if (dr[1].ToString() == FN && dr[2].ToString() == LN)
+                {
+                    id = (int)dr[Convert.ToInt32(0)];
+                    break;
+                }
+                else
+                    return false;
+            }
+
+            string inputString = FN + LN + DOB + Cntry + rgn + adrs;
+
+            byte[] DataReceived = Encoding.UTF8.GetBytes(inputString);
             byte[] GeneratedHash;
-            DataBaseObjects.VoterInfo hashtable =  DataBaseObjects.ElectionDBClass.RetrieveVoterInfoObject(id); 
+            VoterInfo hashtable;
+
+            if (id> -1)
+                hashtable =  ElectionDBClass.RetrieveVoterInfoObject(id); 
+            else
+            {
+                return false;
+            }
 
             DataTable dt = new DataTable();
-   
-                    //generates a SaltedHash with the datareceived, this is to allow for a comparison between the hash on the database and the new generated hash. A hash generated with key 'A' should always create Hash 'A'. So if  hash 'A' != hash 'B', then then means one of two things: key 'a' != key 'b', or there is an error in logic some where. 
+            byte[] salt = hashtable.Salt;
 
-                    GeneratedHash = GenerateSaltedHash(DataReceived, hashtable.Salt); 
+            //generates a SaltedHash with the datareceived, this is to allow for a comparison between the hash on the database and the new generated hash. A hash generated with key 'A' should always create Hash 'A'. So if  hash 'A' != hash 'B', then then means one of two things: key 'a' != key 'b', or there is an error in logic some where. 
+                    GeneratedHash = GenerateSaltedHash( DataReceived,  salt); 
 
                     if (CompareByteArrays(hashtable.Hash, GeneratedHash)) //CompareByteArrays compares byte[] Summary: checks if ID's match, if true; generates saltedhash with hash on table. 
                         return true;
@@ -148,6 +183,69 @@ namespace Salty
                 return false;
             }
         }
- 
+
+       /// <summary>
+       /// Used to manually save salt and hash of the user
+       /// </summary>
+       /// <param name="FN"> First Name</param>
+       /// <param name="LN"> Last Name</param>
+       /// <param name="DOB"> Date of Birth</param>
+       /// <param name="Cntry"> Country</param>
+       /// <param name="rgn"> region</param>
+       /// <param name="adrs"> address </param>
+       /// <param name="eml"> email</param>
+       /// <returns></returns>
+        public static byte[] ManuallySaveSaltAndHash(string FN, string LN, DateTime DOB, string Cntry, string rgn, string adrs, string eml) //works
+        {
+            try
+            {
+                DataTable aaa = ElectionDBClass.VotersTable();
+                int id;
+
+                foreach (DataRow dr in aaa.Rows)
+                {
+                    if (dr[1].ToString() == FN && dr[2].ToString() == LN)
+                    {
+                        id = (int)dr[Convert.ToInt32(0)];
+                        break;
+                    }
+                    else
+                        return null;
+                }
+
+
+                string userinput = FN + LN + DOB + Cntry + rgn + adrs;
+                byte[] DataReceived = Encoding.UTF8.GetBytes(userinput); 
+
+                byte[] salty = GetSalt(32); //First, the salt is generated
+                byte[] saltyHash = GenerateSaltedHash(DataReceived, salty);  //Second, DataReceived + salty generate the hash.
+                //The SQL database needs to store both the hash and the salt as varbinary, so it can be converted to a 
+                //byte[].
+                // DBLayer.InsertHashTable(id, salt, Hash); third, the generated hash would be saved on the data base 
+                
+                return saltyHash;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+        }
+
+        //
+       // public static bool GenerateVoterInfoTable() // generic
+       //{
+
+    
+       //     DataTable dt = ElectionDBClass.VotersTable();
+       //     string input;
+       //     foreach (DataRow dr in dt.Rows)
+       //     {
+       //         Voter Vtr = ElectionDBClass.RetrieveVoterObject(Convert.ToInt32(dr[0]));
+       //         input=Vtr.
+       //     }
+
+       //}
     }
 }
+ 
