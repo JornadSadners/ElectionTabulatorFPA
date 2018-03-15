@@ -178,7 +178,7 @@ namespace DataBaseObjects
         {
             SqlDataReader DR;
             VoterInfo VIData = new VoterInfo();
-            string sql = "SELECT * From Candidates where VoterID = " + VoterID.ToString();
+            string sql = "SELECT * From VoterInfo where VoterID = " + VoterID.ToString();
             OpenDB();
 
             SqlCommand cmd = new SqlCommand(sql, con);
