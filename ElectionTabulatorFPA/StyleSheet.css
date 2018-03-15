@@ -17,8 +17,8 @@ header {
 .container-master {
     margin: 0 auto;
     width: 94%;
-    border: 1px solid #808080;
-    border-radius: 2px;
+    /*border: 1px solid #808080;
+    border-radius: 2px;*/
     padding: 40px;
 }
 
