@@ -10,10 +10,10 @@ namespace DataBaseObjects
     public class VoterInfo
     {
         public int VoterID { get; set; } 
-        public string Salt { get; set; }
-        public string Hash { get; set; }
+        public byte[] Salt { get; set; }
+        public byte[] Hash { get; set; }
 
-        public VoterInfo(int voterID, string salt, string hash)
+        public VoterInfo(int voterID, byte[] salt, byte[] hash)
         {
             this.VoterID = voterID;
             this.Salt = salt;
