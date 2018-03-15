@@ -88,7 +88,7 @@ namespace DataBaseObjects
             return CandidateTable;
         }
 
-        public static void VerifyVoter(Voter VUser, Voter VData) // method to verify voter information
+        public static void VerifyVoter(VoterInfo VUser, VoterInfo VData) // method to verify voter information
         {
 
             // VUser is the Voter Object retrieved from the Users input from the program
@@ -107,6 +107,7 @@ namespace DataBaseObjects
                 // strings don't match, verification failed
             }
              
+            // !!! Should I be using Voter Class or VoterInfo Class? I'll modify it to be VoterInfo for now
         }
 
         public static Voter RetrieveVoterObject(int VoterID) // should retrieve a Voter Object based on the input of a VoterID, Voter has an override for .ToString()
