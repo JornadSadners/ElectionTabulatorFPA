@@ -1,11 +1,14 @@
 ﻿body {
-    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
-    font-size: 16px;
+    /*font-family: 'Segoe UI', Arial, Helvetica, sans-serif;*/
+    font-family: 'Bitter', serif;
+    font-size: 22px;
 }
 .fluff {
     padding: 40px;
 }
-
+.extra-fluff {
+    padding: 120px;
+}
 .center {
     text-align: center;
 }
@@ -44,13 +47,16 @@ header {
     text-align: left;
 }
 
-.home-btn{
+.home-btn {
     border: 1px solid black;
     border-radius: 10px;
     margin: 32px;
     padding: 8px;
+    font-size: 30px;
+    font-weight: bold;
 }
-.color{
+.coloring{
     background-color: #150848;
     color: white;
+    padding: 16px;
 }

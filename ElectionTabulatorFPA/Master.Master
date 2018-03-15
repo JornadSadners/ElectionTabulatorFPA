@@ -6,17 +6,17 @@
 <head runat="server">
     <title></title>
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
-
     <link rel="stylesheet" href ="StyleSheet.css" />
+    <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
-       <nav class="navbar navbar-default navbar-fixed-top color">
+       <nav class="navbar navbar-default navbar-fixed-top coloring">
   <div class="container-fluid">
      <div class="navbar-header">
-      <a class="navbar-brand" href="Index.aspx">Home</a>
+      <a class="navbar-brand coloring" href="Index.aspx">HOME</a>
     </div>
   </div>
 </nav>

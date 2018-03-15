@@ -18,5 +18,10 @@ namespace ElectionTabulatorFPA
         {
             Response.Redirect("VerifyInformation.aspx");
         }
+
+        protected void ButtonResults_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Results.aspx");
+        }
     }
 }
