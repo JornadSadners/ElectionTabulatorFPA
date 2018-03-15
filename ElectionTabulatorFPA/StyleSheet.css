@@ -43,3 +43,14 @@ header {
 #resultsTable .loading td {
     text-align: left;
 }
+
+.home-btn{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 32px;
+    padding: 8px;
+}
+.color{
+    background-color: #150848;
+    color: white;
+}

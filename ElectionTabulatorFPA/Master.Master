@@ -7,12 +7,19 @@
     <title></title>
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
 
-
+    <link rel="stylesheet" href ="StyleSheet.css" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
+       <nav class="navbar navbar-default navbar-fixed-top color">
+  <div class="container-fluid">
+     <div class="navbar-header">
+      <a class="navbar-brand" href="Index.aspx">Home</a>
+    </div>
+  </div>
+</nav>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
 
 
@@ -20,7 +27,6 @@
 
 
             </asp:ContentPlaceHolder>
-        </div>
     </form>
 </body>
 </html>
