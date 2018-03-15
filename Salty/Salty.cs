@@ -104,6 +104,7 @@ namespace Salty
         /// <summary>
         ///   /// compares stored hash to Hash generated from user info.
         /// if true, let them through
+        /// if false error occurred
         /// </summary>
         /// <param name="FN">First Name</param>
         /// <param name="LN">Last Name</param>
@@ -115,19 +116,7 @@ namespace Salty
         /// <returns></returns>
         public static bool CheckHashTable(string FN, string LN, DateTime DOB, string Cntry, string rgn, string adrs, string eml)
         {
-            DataTable aaa = ElectionDBClass.VotersTable(); 
-            int id = -1;
-            //Should find a better Method
-            foreach (DataRow dr in aaa.Rows)
-            {
-                if (dr[1].ToString() == FN && dr[2].ToString() == LN)
-                {
-                    id = (int)dr[Convert.ToInt32(0)];
-                    break;
-                }
-                else
-                    return false;
-            }
+            int id = FindID(FN, LN); 
 
             string inputString = FN + LN + DOB + Cntry + rgn + adrs;
 
@@ -135,7 +124,7 @@ namespace Salty
             byte[] GeneratedHash;
             VoterInfo hashtable;
 
-            if (id> -1)
+            if (id !=  -1)
                 hashtable =  ElectionDBClass.RetrieveVoterInfoObject(id); 
             else
             {
@@ -199,31 +188,27 @@ namespace Salty
         {
             try
             {
-                DataTable aaa = ElectionDBClass.VotersTable();
-                int id;
+                int id = FindID(FN, LN);
 
-                foreach (DataRow dr in aaa.Rows)
+                if(id == -1)
                 {
-                    if (dr[1].ToString() == FN && dr[2].ToString() == LN)
-                    {
-                        id = (int)dr[Convert.ToInt32(0)];
-                        break;
-                    }
-                    else
-                        return null;
+                    return null;
+                }
+                else
+                {
+                    string userinput = FN + LN + DOB + Cntry + rgn + adrs;
+                    byte[] DataReceived = Encoding.UTF8.GetBytes(userinput); 
+
+                    byte[] salty = GetSalt(32); //First, the salt is generated
+                    byte[] saltyHash = GenerateSaltedHash(DataReceived, salty);  //Second, DataReceived + salty generate the hash.
+                    //The SQL database needs to store both the hash and the salt as varbinary, so it can be converted to a 
+                    //byte[].
+                    // DBLayer.InsertHashTable(id, salt, Hash); third, the generated hash would be saved on the data base 
+                
+                    return saltyHash;
+
                 }
 
-
-                string userinput = FN + LN + DOB + Cntry + rgn + adrs;
-                byte[] DataReceived = Encoding.UTF8.GetBytes(userinput); 
-
-                byte[] salty = GetSalt(32); //First, the salt is generated
-                byte[] saltyHash = GenerateSaltedHash(DataReceived, salty);  //Second, DataReceived + salty generate the hash.
-                //The SQL database needs to store both the hash and the salt as varbinary, so it can be converted to a 
-                //byte[].
-                // DBLayer.InsertHashTable(id, salt, Hash); third, the generated hash would be saved on the data base 
-                
-                return saltyHash;
             }
             catch (Exception)
             {
@@ -232,6 +217,30 @@ namespace Salty
             }
         }
 
+        /// <summary>
+        /// Hopefully this function will find the ID from Firstname and LastName, will return -1 if it can't find id.
+        /// </summary>
+        /// <param name="FN"> FirstName</param>
+        /// <param name="LN"> LastName</param>
+        /// <returns></returns>
+        private static int FindID(string FN, string LN)
+        {
+            int id = -1;
+            DataTable aaa = ElectionDBClass.VotersTable();
+            foreach (DataRow dr in aaa.Rows)
+            {
+                if (dr[1].ToString() == FN && dr[2].ToString() == LN)
+                {
+                    id = (int)dr[Convert.ToInt32(0)];
+                    break;
+                }
+                else
+                    return -1;
+            }
+       
+
+            return id;
+        }
         //
        // public static bool GenerateVoterInfoTable() // generic
        //{
