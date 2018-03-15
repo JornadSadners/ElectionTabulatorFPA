@@ -207,43 +207,27 @@ namespace DataBaseObjects
         {
             string sql = "INSERT INTO VoterInfo (VoterID, Salt, Hash) values (@VoterID, @Salt, @Hash)";
 
-            SqlTransaction transaction = con.BeginTransaction();
-            SqlCommand cmd = new SqlCommand(sql, con, transaction);
+            //SqlTransaction transaction = con.BeginTransaction();
+            SqlCommand cmd = new SqlCommand(sql, con /*transaction*/);
             
-            try
-            {
+            //try
+            //{
                 OpenDB();
                 cmd.Parameters.Add(new SqlParameter("@VoterID", VoterID));
                 cmd.Parameters.Add(new SqlParameter("@Salt", Salt));
                 cmd.Parameters.Add(new SqlParameter("@Hash", Hash));
 
                 cmd.ExecuteNonQuery();
-                transaction.Commit(); // trying Transaction functionality, if it fails use below code instead
+                //transaction.Commit(); // trying Transaction functionality, not working perfectly so leave it for now
                 CloseDB();
-            }
+            //}
 
-            catch (Exception EX)
-            {
-                transaction.Rollback();
-                throw EX;
-            }
+            //catch (Exception EX)
+            //{
+            //    transaction.Rollback();
+            //    throw EX;
+            //}
         }
 
-    //    public static void AddNewVoterInfo(int VoterID, byte[] Salt, byte[] Hash)
-    //    {
-    //        string sql = "INSERT INTO VoterInfo (VoterID, Salt, Hash) values (@VoterID, @Salt, @Hash)";
-
-
-    //        SqlCommand cmd = new SqlCommand(sql, con);
-
-    //        OpenDB();
-    //        cmd.Parameters.Add(new SqlParameter("@VoterID", VoterID));
-    //        cmd.Parameters.Add(new SqlParameter("@Salt", Salt));
-    //        cmd.Parameters.Add(new SqlParameter("@Hash", Hash));
-
-    //        cmd.ExecuteNonQuery();
-    //        CloseDB();
-    //    }
-    //}
  }
 }
