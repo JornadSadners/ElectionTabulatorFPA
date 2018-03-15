@@ -88,27 +88,29 @@ namespace DataBaseObjects
             return CandidateTable;
         }
 
-        public static void VerifyVoter(VoterInfo VUser, VoterInfo VData) // method to verify voter information
-        {
+        //public static void VerifyVoter(VoterInfo VUser, VoterInfo VData) // method to verify voter information
+        //{
 
-            // VUser is the Voter Object retrieved from the Users input from the program
-            // VData is the Voter Object retrieved from the Database
+        //    // VUser is the Voter Object retrieved from the Users input from the program
+        //    // VData is the Voter Object retrieved from the Database
 
-            string VUserString = VUser.ToString();
-            string VDataString = VData.ToString();
+        //    string VUserString = VUser.ToString();
+        //    string VDataString = VData.ToString();
 
-            if (VUserString == VDataString)
-            {
-                // strings match and the voter is correct
-            }
+        //    if (VUserString == VDataString)
+        //    {
+        //        // strings match and the voter is correct
+        //    }
 
-            else
-            {
-                // strings don't match, verification failed
-            }
+        //    else
+        //    {
+        //        // strings don't match, verification failed
+        //    }
              
-            // !!! Should I be using Voter Class or VoterInfo Class? I'll modify it to be VoterInfo for now
-        }
+        //    
+
+            
+        //}
 
         public static Voter RetrieveVoterObject(int VoterID) // should retrieve a Voter Object based on the input of a VoterID, Voter has an override for .ToString()
         {
@@ -184,8 +186,8 @@ namespace DataBaseObjects
             if (DR.Read())
             {
                 VIData.VoterID = (int)DR["VoterID"];
-                VIData.Salt = (string)DR["Salt"];
-                VIData.Hash = (string)DR["Hash"];
+                VIData.Salt = (byte[])DR["Salt"];
+                VIData.Hash = (byte[])DR["Hash"];
 
                 DR.Close();
                 CloseDB();
