@@ -46,5 +46,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleDataTable.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataBaseObjects\DataBaseObjects.csproj">
+      <Project>{e50279ec-33a3-49dd-86a7-7a0ed548c294}</Project>
+      <Name>DataBaseObjects</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

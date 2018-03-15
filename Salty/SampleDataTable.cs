@@ -14,24 +14,19 @@ namespace Salty
         /// Below would be rough example of the saltedHash datatable would look like
         /// SQL table would have three values: id = int, salt= varbinary, hash =varbinary
         /// </summary>
-        public static void GenerateDataTable()
+        public static void GenerateDataTable(int id)
         {
-           
-        
             // Create a new DataTable.
-            myTable = new DataTable("Table");
+ 
+            DataTable myTable = DataBaseObjects.ElectionDBClass.VoterInfoTable();
 
-            DataColumn id = new DataColumn("SaltedHashID"); //or userid
-            id.DataType = System.Type.GetType("System.Int32");
-            myTable.Columns.Add(id);
+            foreach (var r in myTable.Rows)
+            {
+                DataRow r2 = (DataRow)r;
 
-            DataColumn Salt = new DataColumn("Salt");
-            Salt.DataType = System.Type.GetType("System.Byte[]");
-            myTable.Columns.Add(Salt);
-
-            DataColumn Hash = new DataColumn("Hash");
-            Hash.DataType = System.Type.GetType("System.Byte[]");
-            myTable.Columns.Add(Hash);
+                r2[0] 
+            }
+       
         }
     }
 }

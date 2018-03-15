@@ -184,8 +184,8 @@ namespace DataBaseObjects
             if (DR.Read())
             {
                 VIData.VoterID = (int)DR["VoterID"];
-                VIData.Salt = (string)DR["Salt"];
-                VIData.Hash = (string)DR["Hash"];
+                VIData.Salt = (byte[])DR["Salt"];
+                VIData.Hash = (byte[])DR["Hash"];
 
                 DR.Close();
                 CloseDB();

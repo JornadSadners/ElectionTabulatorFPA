@@ -15,7 +15,7 @@ namespace Salty
     /// </summary>
     public static class Salty
     {
-        static byte[] testSalt => Encoding.UTF8.GetBytes("d"); //remove me in finished product
+
         /// <summary>
         ///  generates salt
         /// </summary>
@@ -75,27 +75,25 @@ namespace Salty
         /// </summary>
         /// <param name="DataReceived">Convert any incoming string to byte[] with System.Text.Encoding.UTF8.getByte(yourString)</param>
         /// <returns></returns>
-        public static byte[] SaveSaltAndHash(byte[] DataReceived) //Used to add a InsertHashTable in DBLayer
-        {
-            try
-            {
-                byte[] salty = GetSalt(32); //First, the salt is generated
-                byte[] saltyHash = GenerateSaltedHash(DataReceived, salty);  //Second, DataReceived + salty generate the hash.
-                if (SampleDataTable.myTable == null)
-                    SampleDataTable.GenerateDataTable();
+        //public static byte[] SaveSaltAndHash(byte[] DataReceived) //Used to add a InsertHashTable in DBLayer
+        //{
+        //    try
+        //    {
+        //        byte[] salty = GetSalt(32); //First, the salt is generated
+        //        byte[] saltyHash = GenerateSaltedHash(DataReceived, salty);  //Second, DataReceived + salty generate the hash.
+             
+        //        SampleDataTable.myTable.Rows.Add(salty, saltyHash);
+        //        //The SQL database needs to store both the hash and the salt as varbinary, so it can be converted to a 
+        //        //byte[].
+        //        // DBLayer.InsertHashTable(salty, saltyHash); third, the generated hash would be saved on the data base 
+        //        return saltyHash;
+        //    }
+        //    catch (Exception)
+        //    {
 
-                SampleDataTable.myTable.Rows.Add(salty, saltyHash);
-                //The SQL database needs to store both the hash and the salt as varbinary, so it can be converted to a 
-                //byte[].
-                // DBLayer.InsertHashTable(salty, saltyHash); third, the generated hash would be saved on the data base 
-                return saltyHash;
-            }
-            catch (Exception)
-            {
-
-                return null;
-            }
-        }
+        //        return null;
+        //    }
+        //}
   
         /// <summary>
         /// compares stored hash to Hash generated from user info.
@@ -104,22 +102,20 @@ namespace Salty
         /// <param name="DataReceived">Convert any incoming string to byte[] with System.Text.Encoding.UTF8.getByte(yourString)</param>
         /// <param name="dt">dt is the dataTable columns need to equal: ID</param>
         /// <returns></returns>
-        public static bool CheckHashTable(byte[] DataReceived, DataTable dt, int id)
+        public static bool CheckHashTable(byte[] DataReceived,  int id)
         {
             byte[] GeneratedHash;
+            DataBaseObjects.VoterInfo hashtable =  DataBaseObjects.ElectionDBClass.RetrieveVoterInfoObject(id); 
 
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                if (i == id) //Checks if ID's match, if true; generates saltedhash, then compares generated hash with hash on dt. 
-                {
+            DataTable dt = new DataTable();
+   
                     //generates a SaltedHash with the datareceived, this is to allow for a comparison between the hash on the database and the new generated hash. A hash generated with key 'A' should always create Hash 'A'. So if  hash 'A' != hash 'B', then then means one of two things: key 'a' != key 'b', or there is an error in logic some where. 
 
-                    GeneratedHash = GenerateSaltedHash(DataReceived, dt.Rows[i].Field<byte[]>("Salt")); 
+                    GeneratedHash = GenerateSaltedHash(DataReceived, hashtable.Salt); 
 
-                    if (CompareByteArrays(dt.Rows[i].Field<byte[]>("Hash"), GeneratedHash)) //CompareByteArrays compares byte[] Summary: checks if ID's match, if true; generates saltedhash with hash on table. 
+                    if (CompareByteArrays(hashtable.Hash, GeneratedHash)) //CompareByteArrays compares byte[] Summary: checks if ID's match, if true; generates saltedhash with hash on table. 
                         return true;
-                }
-            }
+            
 
             return false;
         }
@@ -142,8 +138,7 @@ namespace Salty
             for (int i = 0; i < array1.Length; i++)
                 if (array1[i] != array2[i])//checks if a byte is different, if true; return false .
                     return false;
-                
-            
+                            
             return true;
 
             }
@@ -153,35 +148,6 @@ namespace Salty
                 return false;
             }
         }
-        public static byte[] testSaveSaltAndHash(byte[] DataReceived) //works
-        {
-            try
-            {
-                byte[] salty = testSalt; //First, the salt is generated
-                byte[] saltyHash = GenerateSaltedHash(DataReceived, salty);  //Second, DataReceived + salty generate the hash.
-                //The SQL database needs to store both the hash and the salt as varbinary, so it can be converted to a 
-                //byte[].
-                // DBLayer.InsertHashTable(salty, saltyHash); third, the generated hash would be saved on the data base 
-                return saltyHash;
-            }
-            catch (Exception)
-            {
-
-                return null;
-            }
-        }
-        public static bool TestHashTable(byte[] DataReceived, byte[] test) // works
-        {
-            byte[] GeneratedHash;
-            byte[] s = testSalt;
-            GeneratedHash = GenerateSaltedHash(DataReceived, s);
-
-            if (CompareByteArrays(test, GeneratedHash)) //CompareByteArrays compares byte[] Summary: checks if ID's match, if true; generates saltedhash with hash on table. 
-                return true;
-
-
-
-            return false;
-        }
+ 
     }
 }
