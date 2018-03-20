@@ -19,8 +19,10 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>enabled</IISExpressWindowsAuthentication>
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -165,6 +167,7 @@
     <Content Include="Scripts\jquery.signalR-2.2.2.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.min.js" />
     <Content Include="StyleSheet.css" />
+    <Content Include="VerifyInformation.aspx" />
     <Content Include="VoteTicker.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -191,6 +194,13 @@
     </Compile>
     <Compile Include="ResultsHub.cs" />
     <Compile Include="StartupResult.cs" />
+    <Compile Include="VerifyInformation.aspx.cs">
+      <DependentUpon>VerifyInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerifyInformation.aspx.designer.cs">
+      <DependentUpon>VerifyInformation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="VoteTicker.cs" />
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
