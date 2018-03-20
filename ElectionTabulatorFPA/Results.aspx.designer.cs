@@ -10,7 +10,7 @@
 namespace ElectionTabulatorFPA {
     
     
-    public partial class WebForm1 {
+    public partial class Results {
         
         /// <summary>
         /// Button1 control.

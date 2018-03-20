@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Results.aspx.cs" Inherits="ElectionTabulatorFPA.WebForm1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Results.aspx.cs" Inherits="ElectionTabulatorFPA.Results" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <script src='<%=ResolveClientUrl("~/Scripts/jquery-3.3.1.min.js") %>'></script>
      <script src='<%=ResolveClientUrl("~/Scripts/jquery.signalR-2.2.2.min.js") %>'></script>  

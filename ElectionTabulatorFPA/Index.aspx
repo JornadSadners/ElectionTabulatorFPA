@@ -7,7 +7,7 @@
         <div class="center">
             <div class="btn-group">
         <asp:Button ID="ButtonVote" runat="server" Text="Vote" CssClass="home-btn btn" Height="180px" Width="240px" OnClick="ButtonVote_Click"/>
-        <asp:Button ID="ButtonResults" runat="server" Text="View Results" CssClass="home-btn btn" Width="240" Height="180" />
+        <asp:Button ID="ButtonResults" runat="server" Text="View Results" CssClass="home-btn btn" Width="240" Height="180" OnClick="ButtonResults_Click" />
         </div>
         </div>
     </div>

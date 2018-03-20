@@ -10,7 +10,7 @@
 namespace ElectionTabulatorFPA {
     
     
-    public partial class WebForm1 {
+    public partial class VerifyInformation {
         
         /// <summary>
         /// Panel1 control.
