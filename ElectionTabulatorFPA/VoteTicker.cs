@@ -45,85 +45,66 @@ namespace ElectionTabulatorFPA
             get;
             set;
         }
-        private void BroadcastResult(Candidate candidate)
+        private void BroadcastVote(Candidate candidate)
         {
             Clients.All.updateResult(candidate);
         }
         public IEnumerable<Candidate> GetAllCandidates()
         {
-            GetResultsFromDB();
-            return _candidates.Values;
+
+            return GetResultsFromDB();
         }
-        private void UpdateCandidates(object state)
-        {
-            lock (_updateCandidatesLock)
+            public List<Candidate> GetResultsFromDB()
             {
-                if (!_updatingCandidates)
+                _candidates.Clear();
+                var candidates = new List<Candidate>();
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["B231InstructorMachine"].ConnectionString))
                 {
-                    _updatingCandidates = true;
-                    //GetResultsFromDB();
-                    foreach (var candidate in _candidates.Values)
+                    string query = "SELECT CandidateID, FName, LName, PartyName, Seat, VoteCount FROM [dbo].[Candidates] order by VoteCount desc";
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        //BroadcastResult(candidate);
-                    }
-
-                    _updatingCandidates = false;
-                }
-            }
-        }
-
-        public void GetResultsFromDB()
-        {
-
-            _candidates.Clear();
-            var candidates = new List<Candidate>();
-            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["B231InstructorMachine"].ConnectionString))
-            {
-                string query = "SELECT CandidateID, FName, LName, PartyName, Seat, VoteCount FROM [dbo].[Candidates] order by VoteCount desc";
-                connection.Open();
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    try
-                    {
-                        command.Notification = null;
-                        DataTable dt = new DataTable();
-                        SqlDependency dependency = new SqlDependency(command);
-                        dependency.OnChange += new OnChangeEventHandler(dependency_OnChange);
-                        // voteNotifier = new NewVoteNotifier(connection, query);
-                        //voteNotifier.NewVote += NewVoteReceived;
-                        if (connection.State == ConnectionState.Closed)
-                            connection.Open();
-
-                        //SqlDependency.Start(connection.ConnectionString);
-                        var reader = command.ExecuteReader();
-                        dt.Load(reader);
-                        if (dt.Rows.Count > 0)
+                        try
                         {
-                            for (int i = 0; i < dt.Rows.Count; i++)
-                            {
-                                candidates.Add(new Candidate
-                                {
-                                    CandidateID = Int32.Parse(dt.Rows[i]["CandidateID"].ToString()),
-                                    FName = dt.Rows[i]["FName"].ToString(),
-                                    LName = dt.Rows[i]["LName"].ToString(),
-                                    PartyName = dt.Rows[i]["PartyName"].ToString(),
-                                    Seat = dt.Rows[i]["Seat"].ToString(),
-                                    VoteCount = Convert.ToInt32(dt.Rows[i]["VoteCount"])
-                                });
-                            }
-                            candidates.ForEach(candidate => _candidates.TryAdd(candidate.CandidateID, candidate));
+                            command.Notification = null;
+                            DataTable dt = new DataTable();
+                            SqlDependency dependency = new SqlDependency(command);
+                            dependency.OnChange += new OnChangeEventHandler(dependency_OnChange);
+                            // voteNotifier = new NewVoteNotifier(connection, query);
+                            //voteNotifier.NewVote += NewVoteReceived;
 
+
+                            //SqlDependency.Start(connection.ConnectionString);
+
+
+                            var reader = command.ExecuteReader();
+                            dt.Load(reader);
+                            if (dt.Rows.Count > 0)
+                            {
+                                for (int i = 0; i < dt.Rows.Count; i++)
+                                {
+                                    candidates.Add(new Candidate
+                                    {
+                                        CandidateID = Int32.Parse(dt.Rows[i]["CandidateID"].ToString()),
+                                        FName = dt.Rows[i]["FName"].ToString(),
+                                        LName = dt.Rows[i]["LName"].ToString(),
+                                        PartyName = dt.Rows[i]["PartyName"].ToString(),
+                                        Seat = dt.Rows[i]["Seat"].ToString(),
+                                        VoteCount = Convert.ToInt32(dt.Rows[i]["VoteCount"])
+                                    });
+                                }
+                                //candidates.ForEach(candidate => _candidates.TryAdd(candidate.CandidateID, candidate));
+                            }
+                            connection.Close();
                         }
-                        //connection.Close();
-                    }
-                    catch (Exception ex)
-                    {
-                        throw ex;
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
                     }
                 }
+                return candidates;
             }
-            //return candidates;
-        }
 
         private void dependency_OnChange(object sender, SqlNotificationEventArgs e)
         {
@@ -132,13 +113,12 @@ namespace ElectionTabulatorFPA
 
             if (e.Type == SqlNotificationType.Change)
             {
-                //Console.WriteLine($"{e.Type}");
-                GetResultsFromDB();
-                foreach (var candidate in _candidates.Values)
-                {
-                    BroadcastResult(candidate);
-                }
+                BroadcastVotes(GetResultsFromDB());
             }
+        }
+        private void BroadcastVotes(List<Candidate> candidates)
+        {
+            Clients.All.updateResults(candidates);
         }
         //private void BroadcastVotes(Candidate candidate)
         //{
