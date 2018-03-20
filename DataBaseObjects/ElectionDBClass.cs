@@ -178,7 +178,7 @@ namespace DataBaseObjects
         {
             SqlDataReader DR;
             VoterInfo VIData = new VoterInfo();
-            string sql = "SELECT * From Candidates where VoterID = " + VoterID.ToString();
+            string sql = "SELECT * From VoterInfo where VoterID = " + VoterID.ToString();
             OpenDB();
 
             SqlCommand cmd = new SqlCommand(sql, con);
@@ -202,5 +202,32 @@ namespace DataBaseObjects
                 throw new Exception($"VoterID {VoterID} Not Found");
             }
         }
-    }
+
+        public static void AddNewVoterInfo(int VoterID, byte[] Salt, byte[] Hash)
+        {
+            string sql = "INSERT INTO VoterInfo (VoterID, Salt, Hash) values (@VoterID, @Salt, @Hash)";
+
+            //SqlTransaction transaction = con.BeginTransaction();
+            SqlCommand cmd = new SqlCommand(sql, con /*transaction*/);
+            
+            //try
+            //{
+                OpenDB();
+                cmd.Parameters.Add(new SqlParameter("@VoterID", VoterID));
+                cmd.Parameters.Add(new SqlParameter("@Salt", Salt));
+                cmd.Parameters.Add(new SqlParameter("@Hash", Hash));
+
+                cmd.ExecuteNonQuery();
+                //transaction.Commit(); // trying Transaction functionality, not working perfectly so leave it for now
+                CloseDB();
+            //}
+
+            //catch (Exception EX)
+            //{
+            //    transaction.Rollback();
+            //    throw EX;
+            //}
+        }
+
+ }
 }

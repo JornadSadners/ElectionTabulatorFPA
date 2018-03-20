@@ -5,21 +5,50 @@
 <html>
 <head runat="server">
     <title></title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href ="StyleSheet.css" />
+    <link href="masterTableStyles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="content">
+       <nav class="navbar navbar-default navbar-fixed-top coloring">
+  <div class="container-fluid">
+     <div class="navbar-header">
+      <a class="navbar-brand coloring" href="Index.aspx">HOME</a>
+    </div>
+  </div>
+</nav>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            
+
 
 
 
 
             </asp:ContentPlaceHolder>
-        </div>
+        <div id="sideBar">
 
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Candidate Name</th>
+                            <th>Party</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Candidate Candidateson</td>
+                            <td>Party A</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">description...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
     </form>
 </body>
 </html>
