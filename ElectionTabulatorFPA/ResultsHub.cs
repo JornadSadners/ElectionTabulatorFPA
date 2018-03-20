@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
-using BaseLayerObjects;
+using DataBaseObjects;
 
 namespace ElectionTabulatorFPA
 {

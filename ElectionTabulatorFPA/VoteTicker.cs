@@ -1,4 +1,4 @@
-﻿using BaseLayerObjects;
+﻿using DataBaseObjects;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using System;

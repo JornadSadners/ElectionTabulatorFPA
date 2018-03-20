@@ -106,6 +106,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Master.Master" />
+    <Content Include="masterTableStyles.css" />
     <Content Include="Results.aspx" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
@@ -211,16 +212,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BaseLayerObjects\BaseLayerObjects.csproj">
-      <Project>{68e28f12-e4f7-4e1f-b7d8-4290659230f3}</Project>
-      <Name>BaseLayerObjects</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BaseLayerObjects\BaseLayerObjects.csproj">
+      <Project>{68e28f12-e4f7-4e1f-b7d8-4290659230f3}</Project>
+      <Name>BaseLayerObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataBaseObjects\DataBaseObjects.csproj">
+      <Project>{e50279ec-33a3-49dd-86a7-7a0ed548c294}</Project>
+      <Name>DataBaseObjects</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
