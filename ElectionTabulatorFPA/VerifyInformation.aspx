@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="VerifyInformation.aspx.cs" Inherits="ElectionTabulatorFPA.VerifyInformation" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="VerificationStyleSheet.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <h2>Verify Your Information</h2>

@@ -1,0 +1,25 @@
+﻿body {
+
+}
+
+h2 {
+    text-align: center;
+    background-color: rgb(5,162,195);
+    font-size: 28px;
+    padding: 4px;
+}
+
+.panel {
+    padding-left: 39%;
+}
+
+span {
+    font-size: 24px;
+}
+
+input {
+    font-size: 24px;
+}
+
+
+
