@@ -7,8 +7,8 @@
     <div class="container-fluid">
         <div class="center extra-fluff">
         
-        <asp:Button ID="ButtonVote" runat="server" Text="VOTE" CssClass="home-btn btn" Height="180px" Width="260px"/>
-        <asp:Button ID="ButtonResults" runat="server" Text="VIEW RESULTS" CssClass="home-btn btn" Width="260" Height="180" OnClick="ButtonResults_Click" />
+        <asp:Button ID="ButtonVote" runat="server" Text="VOTE" CssClass="home-btn btn" Height="180px" Width="220px"/>
+        <asp:Button ID="ButtonResults" runat="server" Text="VIEW RESULTS" CssClass="home-btn btn" Width="220" Height="180" OnClick="ButtonResults_Click" />
      
         </div>
     </div>
