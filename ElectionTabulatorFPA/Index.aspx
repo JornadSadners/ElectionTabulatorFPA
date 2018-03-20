@@ -4,11 +4,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
       
     <div class="container-fluid">
-        <div class="center">
-            <div class="btn-group">
-        <asp:Button ID="ButtonVote" runat="server" Text="Vote" CssClass="home-btn btn" Height="180px" Width="240px" OnClick="ButtonVote_Click"/>
-        <asp:Button ID="ButtonResults" runat="server" Text="View Results" CssClass="home-btn btn" Width="240" Height="180" OnClick="ButtonResults_Click" />
+        <div class="center extra-fluff">
+
+        <asp:Button ID="ButtonVote" runat="server" Text="Vote" CssClass="home-btn btn" Height="180px" Width="220px" OnClick="ButtonVote_Click"/>
+        <asp:Button ID="ButtonResults" runat="server" Text="View Results" CssClass="home-btn btn" Width="220" Height="180" OnClick="ButtonResults_Click" />
         </div>
-        </div>
+   
     </div>
 </asp:Content>
