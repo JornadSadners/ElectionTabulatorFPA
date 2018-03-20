@@ -1,0 +1,31 @@
+﻿body {
+}
+#sideBar {
+    display: block;
+    float: right;
+    width: 20%;
+    border-style: solid;
+    border-color: #150848;
+    margin-top: 0em;
+}
+
+    #sideBar table thead {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 2em;
+        background-color: #150848;
+        color: #ffffff;
+    }
+
+    #sideBar table th {
+        width: 10em;
+        border-style: solid;
+        border-color: #000000;
+    }
+
+    #sideBar table td {
+        text-align: center;
+        font-family: 'Century Gothic';
+        border-style: solid;
+        border-color: #000000;
+        border-width: .05em;
+    }
