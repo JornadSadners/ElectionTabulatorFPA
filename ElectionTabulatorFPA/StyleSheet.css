@@ -2,20 +2,33 @@
     /*font-family: 'Segoe UI', Arial, Helvetica, sans-serif;*/
     /*font-family: 'Bitter', serif;*/
     font-family: 'Century Gothic';
-    font-size: 16px;
+    font-size: 18px;
+}
+.sm-fluff{
+    padding:8px;
 }
 .fluff {
     padding: 40px;
 }
+
 .extra-fluff {
     padding: 120px;
 }
+
 .center {
     text-align: center;
 }
 
-header {
-    padding: 40px;
+.vote-panel {
+    margin: 100px 10px 0px 10px;
+
+}
+
+h4 {
+    background-color: #150848;
+    color: white;
+    margin-bottom: 0px;
+    padding: 16px;
 }
 
 .container-master {
@@ -49,15 +62,39 @@ header {
 }
 
 .home-btn {
-    border: 1px solid black;
+    white-space: normal;
+    border: 0px;
     border-radius: 10px;
-    margin: 32px;
+    margin: 40px;
     padding: 16px;
     font-size: 30px;
-    font-weight: bold;
+    height: 180px;
+    width: 180px;
 }
-.coloring{
+
+.coloring {
     background-color: #150848;
     color: white;
-    padding: 16px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+h2 {
+    text-align: center;
+    background-color: rgb(5,162,195);
+    font-size: 28px;
+    padding: 8px;
+}
+input[type=radio]{
+   float: right;
+ }
+input[type=text]{
+    margin-right:8px;
+}
+footer{
+    height: 80px;
+}
+.submit{
+    padding: 30px;
+    font-weight: bold;
 }

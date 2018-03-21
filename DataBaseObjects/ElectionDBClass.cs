@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -7,8 +8,8 @@ namespace DataBaseObjects
 {
     public class ElectionDBClass
     {
-    	
-        private static string ConString = ""; // Connection String Code Should be Inserted into this Variable
+
+        private static string ConString = ConfigurationManager.ConnectionStrings["Home"].ConnectionString;
 
         private static SqlConnection con;
 
@@ -208,7 +209,7 @@ namespace DataBaseObjects
             string sql = "INSERT INTO VoterInfo (VoterID, Salt, Hash) values (@VoterID, @Salt, @Hash)";
 
             //SqlTransaction transaction = con.BeginTransaction();
-            SqlCommand cmd = new SqlCommand(sql, con /*transaction*/);
+            SqlCommand cmd = new SqlCommand(sql, con);
             
             //try
             //{
@@ -229,5 +230,30 @@ namespace DataBaseObjects
             //}
         }
 
- }
+
+       // https://stackoverflow.com/questions/19639474/how-to-increment-an-integer-in-sql-c-sharp?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+        public static void AddVoteToCandidate(Candidate candidate)
+        {
+            string sql = "UPDATE Candidates SET VoteCount = ISNULL(VoteCount, 0) + 1 WHERE FName = @FName and LName = @LName";
+            OpenDB();
+            SqlCommand cmd = new SqlCommand(sql, con);
+            try
+            {
+            
+            cmd.Parameters.Add(new SqlParameter("@FName", candidate.FName));
+            cmd.Parameters.Add(new SqlParameter("@LName", candidate.LName));
+
+                if (cmd.ExecuteNonQuery() != 1)
+                    throw new Exception("Found more than one candidate to add vote to.");
+
+                CloseDB();
+           }
+
+            catch (Exception EX)
+            {            
+                throw EX;
+            }
+        }
+
+    }
 }

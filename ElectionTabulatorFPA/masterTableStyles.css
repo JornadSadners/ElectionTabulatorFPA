@@ -1,32 +1,33 @@
 ﻿#sideBar {
-    display: block;
-    position: fixed;
-    right:0px;
-    top: 0px;
-    float: right;
-    width: 15%;
+   /*display: block;*/
+     position: fixed;
+    right:20px;
+    top: 130px;
+    /*float: right;*/
+    width: 320px;
     border-style: solid;
     border-color: #150848;
-    margin-top: 0em;
-    height: 100%;
+    margin-top: 0;
 }
 
     #sideBar table thead {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         text-align:center;
-        font-size: 24px;
+     
         background-color: #150848;
         color: #ffffff;
-        height: 91px;
+        height: 70px;
     }
 
     #sideBar table th {
-        width: 10em;
+        white-space: normal;
+        width: 160px;
         border-style: solid;
         border-color: #000000;
     }
 
     #sideBar table td {
+        font-size: 16px;
         text-align: center;
         font-family: 'Century Gothic';
         border-style: solid;

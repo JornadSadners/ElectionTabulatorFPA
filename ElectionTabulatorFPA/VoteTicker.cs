@@ -58,7 +58,7 @@ namespace ElectionTabulatorFPA
             {
                 _candidates.Clear();
                 var candidates = new List<Candidate>();
-                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["B231InstructorMachine"].ConnectionString))
+                using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Home"].ConnectionString))
                 {
                     string query = "SELECT CandidateID, FName, LName, PartyName, Seat, VoteCount FROM [dbo].[Candidates] order by VoteCount desc";
                     connection.Open();

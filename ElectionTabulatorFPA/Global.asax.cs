@@ -13,7 +13,7 @@ namespace ElectionTabulatorFPA
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            System.Data.SqlClient.SqlDependency.Start(ConfigurationManager.ConnectionStrings["FPA"].ConnectionString);
+            System.Data.SqlClient.SqlDependency.Start(ConfigurationManager.ConnectionStrings["Home"].ConnectionString);
 
         }
 
@@ -44,7 +44,7 @@ namespace ElectionTabulatorFPA
 
         protected void Application_End(object sender, EventArgs e)
         {
-            System.Data.SqlClient.SqlDependency.Start(ConfigurationManager.ConnectionStrings["FPA"].ConnectionString);
+            System.Data.SqlClient.SqlDependency.Start(ConfigurationManager.ConnectionStrings["Home"].ConnectionString);
 
         }
     }

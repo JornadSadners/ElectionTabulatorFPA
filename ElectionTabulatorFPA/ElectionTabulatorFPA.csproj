@@ -115,6 +115,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Index.aspx" />
+    <Content Include="Ballot.aspx" />
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -210,6 +211,13 @@
     </Compile>
     <Compile Include="Index.aspx.designer.cs">
       <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ballot.aspx.cs">
+      <DependentUpon>Ballot.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ballot.aspx.designer.cs">
+      <DependentUpon>Ballot.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

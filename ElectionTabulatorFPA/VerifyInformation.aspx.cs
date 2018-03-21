@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataBaseObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,7 +20,20 @@ namespace ElectionTabulatorFPA
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            Voter voter = new Voter();
+            if (txtFirstName.Text != string.Empty)
+            {
+                voter.Fname = txtFirstName.Text;
+            }
+            if (txtLastName.Text != string.Empty)
+            {
+                voter.Lname = txtLastName.Text;
+            }
 
+            ///////////////
+            //////////////////////
+            ///////////////
+            Response.Redirect("Ballot.aspx");
         }
     }
 }

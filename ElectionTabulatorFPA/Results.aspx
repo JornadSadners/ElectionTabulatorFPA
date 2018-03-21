@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="StyleSheet.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <header>
+    <h2>Live Results</h2>
+<%--    <header>
 
-    </header>
+    </header>--%>
  <%--   <div class="chart">
         <asp:Chart ID="ChartVotes" runat="server">
             <Series>
@@ -23,21 +24,20 @@
     </div>--%>
   <div class="container-fluid fluff">
      <div class="row center">
-         <%--<div class="col-md-1"></div>--%>
-          <div class="col-md-3">
-              <asp:Button ID="Button1" runat="server" Text="View All" CssClass="btn"/>
+         <div class="col-md-1"></div>
+          <div class="col-md-2">
+              <asp:Button ID="Button1" runat="server" Text="View All" CssClass="btn btn-lg"/>
 <%--              <input id="viewAll" type="button" value="View All" class="btn" onclick="viewAll()"/>--%>
          </div>
-           <div class="col-md-1">
-         </div>
+
         <div class="col-md-2"> 
-            <input id="mayor" type="button" value="For Mayor" class="btn" onclick="filterCandidates(event)"/>
+            <input id="mayor" type="button" value="Mayor" class="btn btn-lg" onclick="filterCandidates(event)"/>
             </div>
      <div class="col-md-2">
-         <input id="city" type="button" value="For City Council" class="btn" onclick="filterCandidates(event)"/>
+         <input id="city" type="button" value="City Council" class="btn btn-lg" onclick="filterCandidates(event)"/>
          </div> 
      <div class="col-md-2">
-         <input id="superintendent" type="button" value="For Superintendent" class="btn" onclick="filterCandidates(event)"/>
+         <input id="superintendent" type="button" value="Superintendent" class="btn btn-lg" onclick="filterCandidates(event)"/>
          </div> 
           <div class="col-md-2">
          </div>
