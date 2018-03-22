@@ -25,7 +25,22 @@ namespace ElectionTabulatorFPA
                 candidate.FName = tokens[1];
                 ElectionDBClass.AddVoteToCandidate(candidate);
             }
-
+            if (ViewState["CityCouncil"] != null)
+            {
+                string[] tokens = ((string)ViewState["CityCouncil"]).Split(new char[] { ',' });
+                Candidate candidate = new Candidate();
+                candidate.LName = tokens[0];
+                candidate.FName = tokens[1];
+                ElectionDBClass.AddVoteToCandidate(candidate);
+            }
+            if (ViewState["Superintendent"] != null)
+            {
+                string[] tokens = ((string)ViewState["Superintendent"]).Split(new char[] { ',' });
+                Candidate candidate = new Candidate();
+                candidate.LName = tokens[0];
+                candidate.FName = tokens[1];
+                ElectionDBClass.AddVoteToCandidate(candidate);
+            }
         }
         protected void RadioButton_CheckedChanged(object sender, EventArgs e)
         {
