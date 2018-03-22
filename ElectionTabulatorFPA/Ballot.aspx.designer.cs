@@ -76,15 +76,6 @@ namespace ElectionTabulatorFPA {
         protected global::System.Web.UI.WebControls.RadioButton RadioButtonSH;
         
         /// <summary>
-        /// LabelJJ control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelJJ;
-        
-        /// <summary>
         /// RadioButtonJJ control.
         /// </summary>
         /// <remarks>
@@ -112,15 +103,6 @@ namespace ElectionTabulatorFPA {
         protected global::System.Web.UI.WebControls.RadioButton RadioButtonCityCouncilWritein;
         
         /// <summary>
-        /// LabelGF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelGF;
-        
-        /// <summary>
         /// RadioButtonGF control.
         /// </summary>
         /// <remarks>
@@ -130,15 +112,6 @@ namespace ElectionTabulatorFPA {
         protected global::System.Web.UI.WebControls.RadioButton RadioButtonGF;
         
         /// <summary>
-        /// LabelFH control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelFH;
-        
-        /// <summary>
         /// RadioButtonFH control.
         /// </summary>
         /// <remarks>
@@ -146,15 +119,6 @@ namespace ElectionTabulatorFPA {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton RadioButtonFH;
-        
-        /// <summary>
-        /// LabelDJ control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelDJ;
         
         /// <summary>
         /// RadioButtonDJ control.

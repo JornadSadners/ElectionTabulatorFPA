@@ -9,7 +9,7 @@ namespace DataBaseObjects
     public class ElectionDBClass
     {
 
-        private static string ConString = ConfigurationManager.ConnectionStrings["Home"].ConnectionString;
+        private static string ConString = ConfigurationManager.ConnectionStrings["FPA"].ConnectionString;
 
         private static SqlConnection con;
 
@@ -37,7 +37,7 @@ namespace DataBaseObjects
 
             if (con.State != System.Data.ConnectionState.Open)
             {
-                con.Open();
+               con.Open();
             }
         }
 
@@ -234,24 +234,25 @@ namespace DataBaseObjects
        // https://stackoverflow.com/questions/19639474/how-to-increment-an-integer-in-sql-c-sharp?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
         public static void AddVoteToCandidate(Candidate candidate)
         {
-            string sql = "UPDATE Candidates SET VoteCount = ISNULL(VoteCount, 0) + 1 WHERE FName = @FName and LName = @LName";
+            string sql = $"UPDATE Candidates SET VoteCount = (ISNULL(VoteCount, 0) + 1 ) WHERE  LName = '{candidate.LName}'";
             OpenDB();
             SqlCommand cmd = new SqlCommand(sql, con);
             try
             {
-            
-            cmd.Parameters.Add(new SqlParameter("@FName", candidate.FName));
-            cmd.Parameters.Add(new SqlParameter("@LName", candidate.LName));
 
-                if (cmd.ExecuteNonQuery() != 1)
-                    throw new Exception("Found more than one candidate to add vote to.");
-
+                //cmd.Parameters.Add(new SqlParameter("@FName", candidate.FName));
+                //cmd.Parameters.Add(new SqlParameter("@LName", candidate.LName));
+                int check = cmd.ExecuteNonQuery();
+                if (cmd.ExecuteNonQuery() == 0)
+                    throw new Exception("No Candidates Updated");
+                else if(cmd.ExecuteNonQuery() > 1)
+                    throw new Exception("More then one Candidate Added");
                 CloseDB();
            }
 
             catch (Exception EX)
             {            
-                throw EX;
+               throw EX;
             }
         }
 

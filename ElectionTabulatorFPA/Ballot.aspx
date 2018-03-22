@@ -62,8 +62,8 @@
                             </li>
                             <li class="list-group-item">
                                 <div class="radio sm-fluff">
-                                    <asp:Label ID="LabelJJ" runat="server" Text="Jick, Jack" AssociatedControlID="RadioButtonJJ"></asp:Label>
-                                    <asp:RadioButton ID="RadioButtonJJ" runat="server" GroupName="CityCouncil" OnCheckedChanged="RadioButton_CheckedChanged" />
+<%--<asp:Label ID="LabelJJ" runat="server" Text="Jick, Jack" AssociatedControlID="RadioButtonJJ"></asp:Label>--%>
+                                    <asp:RadioButton ID="RadioButtonJJ" Text="Jick, Jack" runat="server" GroupName="CityCouncil" OnCheckedChanged="RadioButton_CheckedChanged" />
                                 </div>
                             </li>
                                <li class="list-group-item">
@@ -86,20 +86,20 @@
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <div class="radio sm-fluff">
-                                    <asp:Label ID="LabelGF" runat="server" Text="Fink, Gertrude" AssociatedControlID="RadioButtonGF"></asp:Label>
-                                    <asp:RadioButton ID="RadioButtonGF" runat="server" GroupName="Superintendent" />
+                                 <%--   <asp:Label ID="LabelGF" runat="server" Text="Fink, Gertrude" AssociatedControlID="RadioButtonGF"></asp:Label>--%>
+                                    <asp:RadioButton ID="RadioButtonGF" runat="server" GroupName="Superintendent" Text="Fink, Gertrude" />
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="radio sm-fluff">
-                                    <asp:Label ID="LabelFH" runat="server" Text="Holly, Frank" AssociatedControlID="RadioButtonFH"></asp:Label>
-                                    <asp:RadioButton ID="RadioButtonFH" runat="server" GroupName="Superintendent" />
+                                  <%--  <asp:Label ID="LabelFH" runat="server" Text="Holly, Frank" AssociatedControlID="RadioButtonFH"></asp:Label>--%>
+                                    <asp:RadioButton ID="RadioButtonFH" runat="server" GroupName="Superintendent" Text="Holly, Frank" />
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="radio sm-fluff">
-                                    <asp:Label ID="LabelDJ" runat="server" Text="Johnson, Dean" AssociatedControlID="RadioButtonDJ"></asp:Label>
-                                    <asp:RadioButton ID="RadioButtonDJ" runat="server" GroupName="Superintendent" />
+                                  <%--  <asp:Label ID="LabelDJ" runat="server" Text="Johnson, Dean" AssociatedControlID="RadioButtonDJ"></asp:Label>--%>
+                                    <asp:RadioButton ID="RadioButtonDJ" runat="server" Text="Johnson, Dean" GroupName="Superintendent" />
 
                                 </div>
                             </li>

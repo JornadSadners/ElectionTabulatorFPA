@@ -59,15 +59,15 @@
                             <td>Superintendent</td>
                         </tr>
                         <tr>
-                            <td colspan="2">Dean Johnson has 
+                            <td colspan="2">Dean Johnson has a sandwich and you will vote for him.
                             </td>
                         </tr>
                         <tr>
-                            <td>Frank Holly</td>
+                            <td>Frank Holly</td> 
                             <td>Superintendent</td>
                         </tr>
                         <tr>
-                            <td colspan="2">Superintendent
+                            <td colspan="2"> no ones as cool as Frank Holly
                             </td>
                         </tr>
                         <tr>
@@ -75,7 +75,7 @@
                             <td>Mayor</td>
                         </tr>
                         <tr>
-                            <td colspan="2">Mayor
+                            <td colspan="2">Gregory Birmingham believes in the revival of the british empire. Is also a super villian in his off hours.
                             </td>
                         </tr>
                         <tr>
@@ -83,7 +83,7 @@
                             <td>Mayor</td>
                         </tr>
                         <tr>
-                            <td colspan="2">
+                            <td colspan="2"> I don't know man
                             </td>
                         </tr>
                         <tr>
