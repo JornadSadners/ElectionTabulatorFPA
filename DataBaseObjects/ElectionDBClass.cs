@@ -208,26 +208,34 @@ namespace DataBaseObjects
         {
             string sql = "INSERT INTO VoterInfo (VoterID, Salt, Hash) values (@VoterID, @Salt, @Hash)";
 
-            //SqlTransaction transaction = con.BeginTransaction();
+            SqlTransaction transaction = con.BeginTransaction("AddNewVoterInfo");
             SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Transaction = transaction;
             
-            //try
-            //{
+            try
+            {
                 OpenDB();
                 cmd.Parameters.Add(new SqlParameter("@VoterID", VoterID));
                 cmd.Parameters.Add(new SqlParameter("@Salt", Salt));
                 cmd.Parameters.Add(new SqlParameter("@Hash", Hash));
 
                 cmd.ExecuteNonQuery();
-                //transaction.Commit(); // trying Transaction functionality, not working perfectly so leave it for now
+                transaction.Commit(); // !!! trying Transaction functionality, should be working but untested
                 CloseDB();
-            //}
+            }
 
-            //catch (Exception EX)
-            //{
-            //    transaction.Rollback();
-            //    throw EX;
-            //}
+            catch
+            {
+                try
+                {
+                    transaction.Rollback();
+                    throw new Exception ("AddNewVoterInfo Failed, Transaction Rollback was a Success");
+                }
+                catch
+                {
+                    throw new Exception("AddNewVoterInfo Failed, Transaction Rollback Failed");
+                }
+            }
         }
 
 
@@ -236,23 +244,35 @@ namespace DataBaseObjects
         {
             string sql = $"UPDATE Candidates SET VoteCount = (ISNULL(VoteCount, 0) + 1 ) WHERE  LName = '{candidate.LName}'";
             OpenDB();
+            SqlTransaction transaction = con.BeginTransaction("AddVoteToCandidate");
             SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Transaction = transaction;
             try
             {
 
                 //cmd.Parameters.Add(new SqlParameter("@FName", candidate.FName));
                 //cmd.Parameters.Add(new SqlParameter("@LName", candidate.LName));
                 int check = cmd.ExecuteNonQuery();
+                transaction.Commit();
                 if (cmd.ExecuteNonQuery() == 0)
-                    throw new Exception("No Candidates Updated");
-                else if(cmd.ExecuteNonQuery() > 1)
+                {
+                    transaction.Rollback();                             // !!! updated with transaction functionality do not commit to master until tested to be working correctly
+                    throw new Exception("No Candidates Updated");       // https://msdn.microsoft.com/en-us/library/system.data.sqlclient.sqltransaction(v=vs.110).aspx information on transactions
+                }
+                else if (cmd.ExecuteNonQuery() > 1)
+                {
+                    transaction.Rollback();
                     throw new Exception("More then one Candidate Added");
+                }
                 CloseDB();
            }
 
             catch (Exception EX)
-            {            
-               throw EX;
+            {
+                CloseDB();
+                transaction.Rollback();
+                throw EX;
+               
             }
         }
 
